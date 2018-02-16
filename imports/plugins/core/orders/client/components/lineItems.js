@@ -59,9 +59,11 @@ class LineItems extends Component {
   displayMedia(uniqueItem) {
     const { displayMedia } = this.props;
 
-    if (displayMedia(uniqueItem)) {
+    const fileRecord = displayMedia(uniqueItem);
+
+    if (fileRecord) {
       return (
-        <img src={displayMedia(uniqueItem).url()} alt="" />
+        <img src={fileRecord.url({ store: "large" })} alt="" />
       );
     }
     return (

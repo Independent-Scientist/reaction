@@ -14,11 +14,10 @@ import AddEmail from "./addEmail";
  * @property {Array} shops - An Array contains information broken down by shop
  * @property {Object} orderSummary - An object containing the items making up the order summary
  * @property {Array} paymentMethod - An array of paymentMethod objects
- * @property {Function} handleDisplayMedia - A function for displaying the product image
  * @property {Booleam} isProfilePage - A boolean value that checks if current page is user profile page
  * @return {Node} React node containing the top-level component for displaying the completed order/receipt page
  */
-const CompletedOrder = ({ order, orderId, shops, orderSummary, paymentMethods, handleDisplayMedia, isProfilePage }) => {
+const CompletedOrder = ({ order, orderId, shops, orderSummary, paymentMethods, isProfilePage }) => {
   if (!order) {
     return (
       <Components.NotFound
@@ -61,7 +60,6 @@ const CompletedOrder = ({ order, orderId, shops, orderSummary, paymentMethods, h
               items={shop[shopKey].items}
               key={shopKey}
               shippingMethod={shop[shopKey].shippingMethod}
-              handleDisplayMedia={handleDisplayMedia}
               isProfilePage={isProfilePage}
             />
           );
@@ -108,7 +106,6 @@ const CompletedOrder = ({ order, orderId, shops, orderSummary, paymentMethods, h
 };
 
 CompletedOrder.propTypes = {
-  handleDisplayMedia: PropTypes.func,
   isProfilePage: PropTypes.bool,
   order: PropTypes.object,
   orderId: PropTypes.string,

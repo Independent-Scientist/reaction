@@ -30,8 +30,10 @@ class ProductImage extends Component {
     const { displayMedia, item, size } = this.props;
     let mediaUrl;
 
-    if (displayMedia(item)) {
-      mediaUrl = displayMedia(item).url();
+    const fileRecord = displayMedia(item);
+
+    if (fileRecord) {
+      mediaUrl = fileRecord.url({ store: "large" });
     } else {
       mediaUrl = "/resources/placeholder.gif";
     }

@@ -77,7 +77,7 @@ class NavBar extends Component {
 
   renderBrand() {
     const shop = this.props.shop || { name: "" };
-    const logo = this.props.brandMedia && this.props.brandMedia.url();
+    const logo = this.props.brandMedia && this.props.brandMedia.url({ store: "large" });
 
     return (
       <Components.Brand

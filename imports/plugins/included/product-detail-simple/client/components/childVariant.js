@@ -83,7 +83,7 @@ class ChildVariant extends Component {
       const media = this.primaryMediaItem;
 
       return (
-        <Components.MediaItem source={media.url()} />
+        <Components.MediaItem source={media.url({ store: "large" })} />
       );
     }
 

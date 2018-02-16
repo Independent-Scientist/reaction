@@ -85,7 +85,7 @@ class MediaItem extends Component {
 
   get source() {
     if (typeof this.props.source === "object" && this.props.source) {
-      return this.props.source.url() || this.defaultSource;
+      return this.props.source.url({ store: "image" }) || this.defaultSource;
     }
 
     return this.props.source || this.defaultSource;

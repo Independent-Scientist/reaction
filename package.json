@@ -19,6 +19,8 @@
     "url": "https://github.com/reactioncommerce/reaction/issues"
   },
   "dependencies": {
+    "@reactioncommerce/file-collections": "0.0.1-development",
+    "@reactioncommerce/file-collections-sa-gridfs": "0.0.0-development",
     "@reactioncommerce/nodemailer": "^5.0.5",
     "accounting-js": "^1.1.1",
     "amplify-store": "^0.1.0",

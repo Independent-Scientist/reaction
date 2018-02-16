@@ -8,10 +8,11 @@ import { $ } from "meteor/jquery";
 import { Meteor } from "meteor/meteor";
 import { ReactionProduct } from "/lib/api";
 import { Reaction, i18next, Logger } from "/client/api";
-import { Tags, Media, Cart } from "/lib/collections";
+import { Tags, Cart } from "/lib/collections";
 import { ProductDetail } from "../components";
 import { SocialContainer, VariantListContainer } from "./";
 import { DragDropProvider, TranslationProvider } from "/imports/plugins/core/ui/client/providers";
+import { Media } from "/imports/plugins/core/files/client";
 
 const wrapComponent = (Comp) => (
   class ProductDetailContainer extends Component {
@@ -307,25 +308,25 @@ function composer(props, onData) {
 
       if (selectedVariant) {
         // Find the media for the selected variant
-        mediaArray = Media.find({
+        mediaArray = Media.findLocal({
           "metadata.variantId": selectedVariant._id
         }, {
           sort: {
             "metadata.priority": 1
           }
-        }).fetch();
+        });
 
         // If no media found, broaden the search to include other media from parents
         if (Array.isArray(mediaArray) && mediaArray.length === 0 && selectedVariant.ancestors) {
           // Loop through ancestors in reverse to find a variant that has media to use
           for (const ancestor of selectedVariant.ancestors.reverse()) {
-            const media = Media.find({
+            const media = Media.findLocal({
               "metadata.variantId": ancestor
             }, {
               sort: {
                 "metadata.priority": 1
               }
-            }).fetch();
+            });
 
             // If we found some media, then stop here
             if (Array.isArray(media) && media.length) {
